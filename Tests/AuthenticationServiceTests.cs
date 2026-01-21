@@ -103,7 +103,7 @@ namespace SafeVault.Tests
                 .ReturnsAsync(user);
 
             _mockUserRepository
-                .Setup(x => x.UpdateFailedLoginAsync(It.IsAny<int>()))
+                .Setup(x => x.RecordFailedLoginAttemptAsync(It.IsAny<int>()))
                 .ReturnsAsync(true);
 
             // Act
@@ -116,7 +116,7 @@ namespace SafeVault.Tests
             message.Should().Contain("inválidas");
             
             _mockUserRepository.Verify(
-                x => x.UpdateFailedLoginAsync(It.IsAny<int>()),
+                x => x.RecordFailedLoginAttemptAsync(It.IsAny<int>()),
                 Times.Once);
         }
 

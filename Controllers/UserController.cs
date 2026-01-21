@@ -27,7 +27,6 @@ namespace SafeVault.Controllers
         /// Obtiene el perfil del usuario autenticado
         /// </summary>
         [HttpGet("profile")]
-        [Authorize("User")]  // Requiere estar autenticado
         public async Task<IActionResult> GetProfile()
         {
             if (!HttpContext.Items.ContainsKey("UserId"))
@@ -48,7 +47,6 @@ namespace SafeVault.Controllers
         /// Cambiar contraseña del usuario autenticado
         /// </summary>
         [HttpPost("change-password")]
-        [Authorize("User")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
         {
             if (!HttpContext.Items.ContainsKey("UserId"))

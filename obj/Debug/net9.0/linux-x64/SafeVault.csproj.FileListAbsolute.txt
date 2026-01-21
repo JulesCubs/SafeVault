@@ -1,3 +1,4 @@
+/home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.csproj.AssemblyReference.cache
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/bin/Debug/net9.0/linux-x64/xunit.abstractions.dll
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/bin/Debug/net9.0/linux-x64/appsettings.Development.json
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/bin/Debug/net9.0/linux-x64/appsettings.json
@@ -212,7 +213,6 @@
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/bin/Debug/net9.0/linux-x64/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/bin/Debug/net9.0/linux-x64/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/bin/Debug/net9.0/linux-x64/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-/home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.csproj.AssemblyReference.cache
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.GeneratedMSBuildEditorConfig.editorconfig
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.gentestingplatformentrypointinputcache.cache
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.genautoregisteredextensionsinputcache.cache
@@ -222,6 +222,7 @@
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.MvcApplicationPartsAssemblyInfo.cache
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.RazorAssemblyInfo.cache
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.RazorAssemblyInfo.cs
+/home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/SafeVault.sourcelink.json
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/scopedcss/bundle/SafeVault.styles.css
 /home/julescubs/julian/dotnet/Auth_Security/SafeVault/obj/Debug/net9.0/linux-x64/scopedcss/projectbundle/SafeVault.bundle.scp.css

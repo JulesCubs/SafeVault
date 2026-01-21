@@ -133,7 +133,7 @@ namespace SafeVault.Services
                     if (failedUser != null)
                     {
                         // Incrementar intentos fallidos
-                        await _userRepository.UpdateFailedLoginAsync(failedUser.Id);
+                        await _userRepository.RecordFailedLoginAttemptAsync(failedUser.Id);
                     }
 
                     // Registrar intento fallido en auditoría

@@ -61,9 +61,9 @@
     "/home/julescubs/.nuget/packages/xunit.extensibility.core/2.9.3/xunit.extensibility.core.2.9.3.nupkg.sha512",
     "/home/julescubs/.nuget/packages/xunit.extensibility.execution/2.9.3/xunit.extensibility.execution.2.9.3.nupkg.sha512",
     "/home/julescubs/.nuget/packages/xunit.runner.visualstudio/3.1.5/xunit.runner.visualstudio.3.1.5.nupkg.sha512",
+    "/home/julescubs/.nuget/packages/microsoft.netcore.app.ref/9.0.4/microsoft.netcore.app.ref.9.0.4.nupkg.sha512",
     "/home/julescubs/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.4/microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512",
-    "/home/julescubs/.nuget/packages/microsoft.netcore.app.host.linux-x64/9.0.4/microsoft.netcore.app.host.linux-x64.9.0.4.nupkg.sha512",
-    "/home/julescubs/.nuget/packages/microsoft.netcore.app.ref/9.0.4/microsoft.netcore.app.ref.9.0.4.nupkg.sha512"
+    "/home/julescubs/.nuget/packages/microsoft.netcore.app.host.linux-x64/9.0.4/microsoft.netcore.app.host.linux-x64.9.0.4.nupkg.sha512"
   ],
   "logs": []
 }

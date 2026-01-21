@@ -559,43 +559,5 @@ namespace SafeVault.Services
                 LastSuccessfulLogin = reader.IsDBNull(9) ? null : (DateTime?)reader.GetDateTime(9)
             };
         }
-
-        /// <summary>
-        /// Actualiza el contador de intentos fallidos de login
-        /// </summary>
-        public async Task<bool> UpdateFailedLoginAsync(int userId)
-        {
-            if (userId <= 0)
-                throw new ArgumentException("El Id de usuario es inválido");
-
-            const string query = "UPDATE Users SET FailedLoginAttempts = FailedLoginAttempts + 1, " +
-                               "LastFailedLoginAttempt = @LastFailedLoginAttempt, UpdatedAt = @UpdatedAt " +
-                               "WHERE Id = @UserId";
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    await connection.OpenAsync();
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@UserId", userId);
-                        command.Parameters.AddWithValue("@LastFailedLoginAttempt", DateTime.UtcNow);
-                        command.Parameters.AddWithValue("@UpdatedAt", DateTime.UtcNow);
-                        command.CommandType = CommandType.Text;
-                        command.CommandTimeout = 30;
-
-                        int result = await command.ExecuteNonQueryAsync();
-                        return result > 0;
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"Error actualizando intentos fallidos: {ex.Message}");
-                return false;
-            }
-        }
     }
 }

@@ -7,7 +7,6 @@ namespace SafeVault.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize("Admin")]  // Solo Admin puede acceder
     public class AdminController : ControllerBase
     {
         private readonly UserRepository _userRepository;

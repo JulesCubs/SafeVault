@@ -1,0 +1,260 @@
+@baseUrl = http://localhost:5000
+@httpsUrl = https://localhost:7219
+
+### ========================================
+### EJEMPLOS DE REQUESTS - SafeVault API
+### ========================================
+### Para usar estos requests, instala la extensión "REST Client" en VS Code
+
+### ========================================
+### 1. AUTENTICACIÓN
+### ========================================
+
+### 1.1 Registrar nuevo usuario
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "SecurePass@123"
+}
+
+### 1.2 Registrar admin
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "email": "admin@example.com",
+  "password": "AdminPass@2024"
+}
+
+### 1.3 Login exitoso
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "SecurePass@123"
+}
+
+### 1.4 Login fallido - contraseña incorrecta
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "WrongPassword"
+}
+
+### 1.5 Login fallido - usuario no existe
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "nonexistent",
+  "password": "AnyPassword@123"
+}
+
+### 1.6 Logout (requiere token)
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... # Reemplazar con token real
+
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{token}}
+
+### ========================================
+### 2. USUARIO
+### ========================================
+
+### 2.1 Obtener perfil (requiere token)
+GET {{baseUrl}}/api/user/profile
+Authorization: Bearer {{token}}
+
+### 2.2 Cambiar contraseña
+POST {{baseUrl}}/api/user/change-password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "currentPassword": "SecurePass@123",
+  "newPassword": "NewPassword@456"
+}
+
+### ========================================
+### 3. ADMIN
+### ========================================
+
+### 3.1 Obtener todos los usuarios (solo Admin)
+GET {{baseUrl}}/api/admin/users
+Authorization: Bearer {{token}}
+
+### 3.2 Obtener roles disponibles
+GET {{baseUrl}}/api/admin/roles
+Authorization: Bearer {{token}}
+
+### 3.3 Obtener roles de un usuario
+GET {{baseUrl}}/api/admin/users/1/roles
+Authorization: Bearer {{token}}
+
+### 3.4 Asignar rol a usuario
+POST {{baseUrl}}/api/admin/users/2/roles
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "roleName": "Manager"
+}
+
+### ========================================
+### 4. VALIDACIONES - CASOS DE ERROR
+### ========================================
+
+### 4.1 Username muy corto (< 3 caracteres)
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "ab",
+  "email": "test@example.com",
+  "password": "SecurePass@123"
+}
+
+### 4.2 Username muy largo (> 50 caracteres)
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "thisusernameistoolongandexceedstheallowedmaximumof50charactersincludingthis",
+  "email": "test@example.com",
+  "password": "SecurePass@123"
+}
+
+### 4.3 Email inválido
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "notanemail",
+  "password": "SecurePass@123"
+}
+
+### 4.4 Contraseña sin mayúscula
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "securepass@123"
+}
+
+### 4.5 Contraseña sin minúscula
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "SECUREPASS@123"
+}
+
+### 4.6 Contraseña sin número
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "SecurePass@"
+}
+
+### 4.7 Contraseña sin carácter especial
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "SecurePass123"
+}
+
+### 4.8 Contraseña muy corta
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "P@ss1"
+}
+
+### ========================================
+### 5. PRUEBAS DE SEGURIDAD
+### ========================================
+
+### 5.1 Intento SQL Injection en username
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin' OR '1'='1",
+  "password": "AnyPassword@123"
+}
+
+### 5.2 Intento SQL Injection en email
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com'; DROP TABLE Users;--",
+  "password": "SecurePass@123"
+}
+
+### 5.3 XSS Attempt en username
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "<script>alert('XSS')</script>",
+  "email": "test@example.com",
+  "password": "SecurePass@123"
+}
+
+### ========================================
+### NOTAS IMPORTANTES
+### ========================================
+
+# 1. Token debe ser reemplazado con un token válido obtenido del login
+# 2. Los usuarios son únicos por username y email
+# 3. Las contraseñas deben cumplir la política de complejidad
+# 4. El bloqueo por intentos fallidos es de 15 minutos después de 5 intentos
+# 5. Las sesiones expiran después de 1 hora
+# 6. Todos los requests deben usar HTTPS en producción
+# 7. Los headers de seguridad están configurados automáticamente
+
+### ========================================
+### FLUJO DE AUTENTICACIÓN RECOMENDADO
+### ========================================
+
+# 1. Registrar usuario:
+#    POST /api/auth/register
+#    
+# 2. Login:
+#    POST /api/auth/login
+#    Guardar el token de la respuesta
+#
+# 3. Usar token en requests posteriores:
+#    Authorization: Bearer <token>
+#
+# 4. Obtener perfil:
+#    GET /api/user/profile
+#
+# 5. Cambiar contraseña si es necesario:
+#    POST /api/user/change-password
+#
+# 6. Logout:
+#    POST /api/auth/logout
