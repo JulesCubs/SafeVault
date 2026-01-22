@@ -15,7 +15,8 @@
             <h2>Secure Form Submission</h2>
             @if (!string.IsNullOrEmpty(ViewData["Message"]?.ToString()))
             {
-                <div class="alert alert-success">@ViewData["Message"]</div>
+                <!-- XSS Protection: HTML-encoded output -->
+                <div class="alert alert-success">@Html.Encode(ViewData["Message"])</div>
             }
             
             <form method="post" asp-page-handler="default" novalidate>

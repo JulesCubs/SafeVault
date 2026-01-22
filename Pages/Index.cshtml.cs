@@ -35,7 +35,8 @@ public class IndexModel : PageModel
         string sanitizedUsername = InputSanitizer.SanitizeInput(username);
         string sanitizedEmail = InputSanitizer.SanitizeInput(email);
 
-        _logger.LogInformation($"Formulario enviado - Usuario: {sanitizedUsername}, Email: {sanitizedEmail}");
+        // Logging seguro: No interpolar datos de usuario directamente
+        _logger.LogInformation("Formulario enviado - Usuario registrado en aplicación");
 
         // Aquí puedes procesar los datos seguros
         ViewData["Message"] = "Datos recibidos correctamente";
